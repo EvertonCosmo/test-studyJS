@@ -1,11 +1,16 @@
 import Axios, { AxiosResponse } from 'axios';
-import { ResponseApi } from './models';
+import { create, ApiResponse } from 'apisauce';
+import { ResponseApi, Request } from './models';
 
-const axios = Axios.create({
-  baseURL: 'https://pokeapi.co/api/v2/',
+const axios = create({
+  baseURL: 'https://servicodados.ibge.gov.br/api/v2/',
 });
-async function getAllPokemon() {
-  const response: ResponseApi<any> = await axios.get('pokemon?limit=493');
+// Gets the frequency of births per decade for the name queried
+async function getFrequencyName(name: string) {
+  const response: any = await axios.get(
+    `censos/nomes/${name.charAt(0).toUpperCase() + name.slice(1)}`
+  );
+
   return response;
 }
-export { getAllPokemon };
+export { getFrequencyName };

@@ -1,10 +1,13 @@
+import { ApiResponse } from 'apisauce';
+
 export type Result = {
-  name: string;
-  url: string;
+  periodo: string;
+  frequencia: number;
 };
 export interface ResponseApi<T> {
-  count: number;
-  next: string;
-  previous: any | null;
-  result: Array<T>;
+  nome: string;
+  sexo: string | null;
+  localidade: string | null;
+  res: Array<T>;
 }
+export interface Request extends ResponseApi<Result> {}
